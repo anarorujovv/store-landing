@@ -1,236 +1,445 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="az">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-width=1.0">
-    <meta name="description" content="Ticarx - 2 tıkla öz satış saytınızı yaradın və bütün e-ticarət proseslərinizi idarə edin. Analitika, stok izləmə, ödənişlər və inteqrasiyalar hamısı bir yerdə.">
-    <title>Ticarx | Saniyələr İçində Öz Satış Saytını Yarat</title>
-    <link rel="icon" type="image/png" href="assets/symbolNoBackground.png">
-    <link rel="apple-touch-icon" href="assets/symbolNoBackground.png">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Outfit:wght@500;700;800&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="style.css">
-    <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet">
-</head>
-<body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <!-- Header -->
+    <!-- SEO: TicarX / TicarX AZ və Azərbaycan bazar axtarışları üçün -->
+    <title>
+      TicarX AZ | Onlayn satış platforması — Mağaza qur, Azərbaycan ödəniş
+      sistemləri ilə sat
+    </title>
+    <meta
+      name="description"
+      content="TicarX — Shopier tipli Azərbaycan e-ticarət SaaS: dəqiqələrlə mağaza qur, onlayn satışa başla, təhlükəsiz ödəniş və yerli inteqrasiyalarla biznesini idarə et. Rəsmi ünvan: ticarx.az."
+    />
+    <meta
+      name="keywords"
+      content="TicarX, TicarX AZ, ticarx.az, online satış, onlayn satış, mağaza qur, mağaza kur, Azərbaycan ödəniş sistemləri, e-ticarət SaaS, Shopier alternativi, Bakı, Azərbaycan"
+    />
+    <meta name="author" content="TicarX" />
+    <meta name="robots" content="index, follow, max-image-preview:large" />
+    <link rel="canonical" href="https://ticarx.az/" />
+    <meta name="language" content="Azerbaijani" />
+    <meta http-equiv="content-language" content="az" />
+
+    <!-- Coğrafi hədəf: Bakı, Azərbaycan -->
+    <meta name="geo.region" content="AZ" />
+    <meta name="geo.placename" content="Bakı, Azərbaycan" />
+    <meta name="geo.position" content="40.4093;49.8671" />
+    <meta name="ICBM" content="40.4093, 49.8671" />
+
+    <!-- Open Graph (WhatsApp, Facebook, LinkedIn və s.) -->
+    <meta property="og:locale" content="az_AZ" />
+    <meta property="og:locale:alternate" content="tr_TR" />
+    <meta property="og:site_name" content="TicarX" />
+    <meta
+      property="og:title"
+      content="TicarX AZ — Azərbaycan üçün onlayn satış və mağaza qurma platforması"
+    />
+    <meta
+      property="og:description"
+      content="Dəqiqələrlə öz mağazanı aç, onlayn satış et, təhlükəsiz ödəniş və yerli inteqrasiyalarla idarə et. Rəsmi: ticarx.az."
+    />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://ticarx.az/" />
+    <meta property="og:image" content="https://ticarx.az/cover.jpg" />
+    <meta property="og:image:secure_url" content="https://ticarx.az/cover.jpg" />
+    <meta property="og:image:type" content="image/jpeg" />
+    <meta
+      property="og:image:alt"
+      content="TicarX — Azərbaycan üçün e-ticarət SaaS platforması"
+    />
+
+    <!-- Twitter / X Cards -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta
+      name="twitter:title"
+      content="TicarX AZ — Onlayn satış, mağaza qur, yerli ödəniş inteqrasiyası"
+    />
+    <meta
+      name="twitter:description"
+      content="TicarX ilə dəqiqələrlə e-ticarət mağazası qur, satışları və sifarişləri tək paneldən idarə et."
+    />
+    <meta name="twitter:image" content="https://ticarx.az/cover.jpg" />
+    <meta
+      name="twitter:image:alt"
+      content="TicarX e-ticarət platforması önizləməsi"
+    />
+
+    <link rel="icon" type="image/png" href="assets/symbolNoBackground.png" />
+    <link rel="apple-touch-icon" href="assets/symbolNoBackground.png" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Outfit:wght@500;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="style.css" />
+    <link
+      href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css"
+      rel="stylesheet"
+    />
+
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "Organization",
+        "@id": "https://ticarx.az/#organization",
+        "name": "TicarX",
+        "alternateName": ["TicarX AZ", "ticarx.az"],
+        "url": "https://ticarx.az/",
+        "logo": "https://ticarx.az/assets/banner.png",
+        "image": "https://ticarx.az/cover.jpg",
+        "description": "TicarX, Azərbaycan bazarı üçün onlayn satış və mağaza qurma (e-ticarət SaaS) platformasıdır: sürətli quraşdırma, təhlükəsiz ödəniş və yerli inteqrasiyalar.",
+        "foundingLocation": {
+          "@type": "Place",
+          "name": "Bakı",
+          "address": {
+            "@type": "PostalAddress",
+            "addressLocality": "Bakı",
+            "addressRegion": "Bakı",
+            "addressCountry": "AZ"
+          }
+        },
+        "areaServed": {
+          "@type": "Country",
+          "name": "Azərbaycan"
+        },
+        "sameAs": ["https://ticarx.az/"]
+      }
+    </script>
+  </head>
+  <body>
     <header class="header">
-        <div class="container header-inner">
-            <a href="#" class="logo" aria-label="Ticarx">
-                <img src="assets/banner.png" alt="Ticarx logo" class="logo-image logo-image-header">
-            </a>
-            <nav class="nav" aria-label="Əsas Menyu">
-                <a href="#features">Özəlliklər</a>
-                <a href="#analytics">Analitika</a>
-                <a href="#pricing">Paketlər</a>
-            </nav>
-            <div class="header-actions">
-                <a href="https://admin.ticarx.az" class="btn btn-outline" target="_blank" rel="noopener noreferrer">Giriş</a>
-                <a href="https://admin.ticarx.az" class="btn btn-primary btn-mobile-hidden">Saytını Yarat</a>
-            </div>
+      <div class="container header-inner">
+        <a href="#" class="logo" aria-label="TicarX — ana səhifə">
+          <img
+            src="assets/banner.png"
+            alt="TicarX loqosu"
+            class="logo-image logo-image-header"
+            width="160"
+            height="40"
+          />
+        </a>
+        <nav class="nav" aria-label="Əsas menyu">
+          <a href="#features">Özəlliklər</a>
+          <a href="#analytics">Analitika</a>
+          <a href="#pricing">Paketlər</a>
+        </nav>
+        <div class="header-actions">
+          <a
+            href="https://admin.ticarx.az"
+            class="btn btn-outline"
+            target="_blank"
+            rel="noopener noreferrer"
+            >Giriş</a
+          >
+          <a
+            href="https://admin.ticarx.az"
+            class="btn btn-primary btn-mobile-hidden"
+            >Mağaza qur</a
+          >
         </div>
+      </div>
     </header>
 
-    <!-- Hero Section -->
-    <section class="hero">
-        <div class="hero-bg-glow"></div>
+    <main id="main-content">
+      <section class="hero" aria-labelledby="hero-heading">
+        <div class="hero-bg-glow" aria-hidden="true"></div>
         <div class="container hero-content">
-            <span class="badge"><i class='bx bxs-rocket badge-icon'></i> Yeni Nəsil E-Ticarət Sistemi</span>
-            <h1 class="hero-title">Öz Satış Saytınızı <span>2 Tıkla</span> Yaradın</h1>
-            <p class="hero-description">Məhsullarınızı yükləyin, bütün sifariş və stokları mikro idarəetmə paneli ilə izləyin. Heç bir kodlama bilməyinizə ehtiyac yoxdur!</p>
-            <div class="hero-buttons">
-                <a href="https://admin.ticarx.az" class="btn btn-primary btn-large">Mağazanı İndi Aç <i class='bx bx-right-arrow-alt'></i></a>
-                <a href="#features" class="btn btn-secondary btn-large">Necə İşləyir?</a>
-            </div>
-            
-            <div class="hero-mockup">
-                <div class="mockup-header">
-                    <div class="dots"><span></span><span></span><span></span></div>
-                    <div class="url-bar">ticarx.az/menim-magazam</div>
-                </div>
-                <div class="mockup-body">
-                    <div class="mockup-stats">
-                        <div class="stat-card">
-                            <i class='bx bx-trending-up'></i>
-                            <div>
-                                <h5>Məhsul Baxışı</h5>
-                                <span>12,450 <span class="trend">+14%</span></span>
-                            </div>
-                        </div>
-                        <div class="stat-card">
-                            <i class='bx bx-cart-alt'></i>
-                            <div>
-                                <h5>Səbətdə Gözləyən</h5>
-                                <span>342 <span class="trend neutral">0%</span></span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
+          <span class="badge"
+            ><i class="bx bxs-rocket badge-icon" aria-hidden="true"></i> TicarX
+            — Azərbaycan üçün e-ticarət SaaS</span
+          >
+          <h1 id="hero-heading" class="hero-title">
+            TicarX ilə onlayn satışa çıx: <span>mağazanı dəqiqələrdə qur</span>
+          </h1>
+          <p class="hero-description">
+            Shopier tipli rahatlıq, Azərbaycan ödəniş ekosisteminə uyğun yerli
+            inteqrasiya və təhlükəsiz ödəniş axını — kod yazmadan öz
+            brendinizlə satış kanalınızı aktivləşdirin.
+          </p>
+          <div class="hero-buttons">
+            <a href="https://admin.ticarx.az" class="btn btn-primary btn-large"
+              >Mağazanı indi aç
+              <i class="bx bx-right-arrow-alt" aria-hidden="true"></i
+            ></a>
+            <a href="#features" class="btn btn-secondary btn-large"
+              >Necə işləyir?</a
+            >
+          </div>
 
-    <!-- Features Section - Compact Grid -->
-    <section id="features" class="features section">
+          <div class="hero-mockup" role="img" aria-label="TicarX idarə paneli önizləməsi">
+            <div class="mockup-header">
+              <div class="dots" aria-hidden="true">
+                <span></span><span></span><span></span>
+              </div>
+              <div class="url-bar">ticarx.az/menim-magazam</div>
+            </div>
+            <div class="mockup-body">
+              <div class="mockup-stats">
+                <div class="stat-card">
+                  <i class="bx bx-trending-up" aria-hidden="true"></i>
+                  <div>
+                    <h5>Məhsul baxışı</h5>
+                    <span>12,450 <span class="trend">+14%</span></span>
+                  </div>
+                </div>
+                <div class="stat-card">
+                  <i class="bx bx-cart-alt" aria-hidden="true"></i>
+                  <div>
+                    <h5>Səbətdə gözləyən</h5>
+                    <span>342 <span class="trend neutral">0%</span></span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="features" class="features section" aria-labelledby="features-heading">
         <div class="container">
-            <div class="section-title text-center">
-                <h2>Mikro İşletmə <span>Nəzarət Mərkəziniz</span></h2>
-                <p>Ehtiyacınız olan bütün ticarət alətləri tək yerdə, çox yığcam dizaynda.</p>
-            </div>
-            
-            <div class="features-grid">
-                <div class="feature-card glass-panel">
-                    <div class="f-icon"><i class='bx bx-store-alt'></i></div>
-                    <h3>2 Tıkla Mağaza</h3>
-                    <p>Sürətli quraşdırma sayəsində anında məhsulları yükləyərək satışa hazır elektron ticarət saytı əldə edin.</p>
-                </div>
-                
-                <div class="feature-card glass-panel">
-                    <div class="f-icon"><i class='bx bx-package'></i></div>
-                    <h3>Stok və Sifariş</h3>
-                    <p>Satışlar, iadələr və məhsul stoku eyni andan izlənilir. Barkod və say nəzarəti asanlaşdırıldı.</p>
-                </div>
-                
-                <div class="feature-card glass-panel">
-                    <div class="f-icon"><i class='bx bx-money-withdraw'></i></div>
-                    <h3>Maliyyə & Borclar</h3>
-                    <p>Gəlirlərinizi, gözləyən ödənişləri və müştəri borclarını asanlıqla bir pəncərədən idarə edin.</p>
-                </div>
-                
-                <div class="feature-card glass-panel">
-                    <div class="f-icon"><i class='bx bx-plug'></i></div>
-                    <h3>İnteqrasiyalar</h3>
-                    <p>İstədiyiniz loqistika və ödəniş şirkəti ilə rahat API/Plugin inteqrasiyası vasitəsilə birlikdə işləyin.</p>
-                </div>
-            </div>
-        </div>
-    </section>
+          <div class="section-title text-center">
+            <h2 id="features-heading">
+              Sürətli quraşdırma, təhlükəsiz ödəniş,
+              <span>yerli inteqrasiya</span>
+            </h2>
+            <p>
+              TicarX AZ ilə onlayn satışı başlatmaq üçün texniki komanda
+              lazım deyil: mağaza qur, məhsul əlavə et, ödəniş və sifarişləri
+              tək paneldən idarə et.
+            </p>
+          </div>
 
-    <!-- Deep Analytics Section -->
-    <section id="analytics" class="analytics section">
+          <div class="features-grid">
+            <article class="feature-card glass-panel">
+              <div class="f-icon" aria-hidden="true">
+                <i class="bx bx-store-alt"></i>
+              </div>
+              <h3>Sürətli quraşdırma</h3>
+              <p>
+                Hazır şablon və addım-addım qurulum ilə dəqiqələrdə canlı
+                mağaza: domen, vitrin və kataloq strukturunu bir neçə kliklə
+                aktivləşdirin.
+              </p>
+            </article>
+
+            <article class="feature-card glass-panel">
+              <div class="f-icon" aria-hidden="true">
+                <i class="bx bx-shield-quarter"></i>
+              </div>
+              <h3>Təhlükəsiz ödəniş</h3>
+              <p>
+                Ödəniş məlumatlarınız və müştəri təcrübəniz üçün təhlükəsiz
+                axın: sifariş təsdiqi, ödəniş statusu və riskə qarşı əsas
+                nəzarət alətləri.
+              </p>
+            </article>
+
+            <article class="feature-card glass-panel">
+              <div class="f-icon" aria-hidden="true">
+                <i class="bx bx-plug"></i>
+              </div>
+              <h3>Yerli inteqrasiya</h3>
+              <p>
+                Azərbaycan ödəniş sistemləri və loqistika alətləri ilə uyumlu
+                inteqrasiya yolları: yerli alış-veriş vərdişlərinə uyğun
+                satış axınını qurun.
+              </p>
+            </article>
+
+            <article class="feature-card glass-panel">
+              <div class="f-icon" aria-hidden="true">
+                <i class="bx bx-package"></i>
+              </div>
+              <h3>Stok və sifariş</h3>
+              <p>
+                Satışlar, iadələr və məhsul stoku eyni paneldən: barkod və
+                say nəzarətini sadələşdirin, sifariş axınını sürətləndirin.
+              </p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section id="analytics" class="analytics section" aria-labelledby="analytics-heading">
         <div class="container analytics-container">
-            <div class="analytics-content">
-                <h2>Müştərinizi <span>Oxuyun.</span></h2>
-                <p class="lead">Gün sonu sadəcə satışlara deyil, qaçan fürsətlərə də baxın.</p>
-                <ul class="analytics-list">
-                    <li><i class='bx bxs-check-circle'></i> <strong>Səbətdə tərk etmə:</strong> Kim, hansı məhsulu səbətdə tutub və niyə almayıb?</li>
-                    <li><i class='bx bxs-check-circle'></i> <strong>Baxış müddəti:</strong> Məhsul səhifəsində nə qədər vaxt keçirdiyini görün.</li>
-                    <li><i class='bx bxs-check-circle'></i> <strong>Dönüşüm hunisi:</strong> Ziyarətçilər hansı mərhələdə saytdan çıxırlar?</li>
-                </ul>
-                <a href="#pricing" class="btn btn-outline" style="margin-top: 1rem;">Paketlərə Bax <i class='bx bx-right-arrow-alt'></i></a>
-            </div>
-            <div class="analytics-visual">
-                <div class="glow-sphere"></div>
-                <div class="chart-glass glass-panel relative">
-                    <div class="chart-header">
-                        <h4>İstifadəçi Yönümü Analizi</h4>
-                        <span class="status-live">Canlı</span>
-                    </div>
-                    <div class="chart-bars">
-                        <div class="bar-group">
-                            <div class="bar" style="height: 100%;"></div>
-                            <span>Baxış</span>
-                        </div>
-                        <div class="bar-group">
-                            <div class="bar" style="height: 65%;"></div>
-                            <span>Səbət</span>
-                        </div>
-                        <div class="bar-group">
-                            <div class="bar hover-alert" style="height: 40%;"></div>
-                            <span>Ödəniş</span>
-                        </div>
-                        <div class="bar-group">
-                            <div class="bar success" style="height: 25%;"></div>
-                            <span>Satış</span>
-                        </div>
-                    </div>
-                    <div class="chart-tooltip">
-                        -15% düşüş! Müştəri bura çox baxdı.
-                    </div>
+          <div class="analytics-content">
+            <h2 id="analytics-heading">Müştərinizi <span>oxuyun.</span></h2>
+            <p class="lead">
+              Gün sonu sadəcə satışlara deyil, qaçan fürsətlərə də baxın —
+              TicarX analitikası ilə onlayn satış hunini izləyin.
+            </p>
+            <ul class="analytics-list">
+              <li>
+                <i class="bx bxs-check-circle" aria-hidden="true"></i>
+                <strong>Səbətdə tərk etmə:</strong> Kim, hansı məhsulu səbətdə
+                tutub və niyə almayıb?
+              </li>
+              <li>
+                <i class="bx bxs-check-circle" aria-hidden="true"></i>
+                <strong>Baxış müddəti:</strong> Məhsul səhifəsində nə qədər vaxt
+                keçirdiyini görün.
+              </li>
+              <li>
+                <i class="bx bxs-check-circle" aria-hidden="true"></i>
+                <strong>Dönüşüm hunisi:</strong> Ziyarətçilər hansı mərhələdə
+                saytdan çıxırlar?
+              </li>
+            </ul>
+            <a href="#pricing" class="btn btn-outline" style="margin-top: 1rem"
+              >Paketlərə bax <i class="bx bx-right-arrow-alt" aria-hidden="true"></i
+            ></a>
+          </div>
+          <div class="analytics-visual">
+            <div class="glow-sphere" aria-hidden="true"></div>
+            <div class="chart-glass glass-panel relative">
+              <div class="chart-header">
+                <h4>İstifadəçi yönümü analizi</h4>
+                <span class="status-live">Canlı</span>
+              </div>
+              <div class="chart-bars">
+                <div class="bar-group">
+                  <div class="bar" style="height: 100%"></div>
+                  <span>Baxış</span>
                 </div>
+                <div class="bar-group">
+                  <div class="bar" style="height: 65%"></div>
+                  <span>Səbət</span>
+                </div>
+                <div class="bar-group">
+                  <div class="bar hover-alert" style="height: 40%"></div>
+                  <span>Ödəniş</span>
+                </div>
+                <div class="bar-group">
+                  <div class="bar success" style="height: 25%"></div>
+                  <span>Satış</span>
+                </div>
+              </div>
+              <div class="chart-tooltip">-15% düşüş! Müştəri bura çox baxdı.</div>
             </div>
+          </div>
         </div>
-    </section>
+      </section>
 
-    <!-- Pricing Packages -->
-    <section id="pricing" class="pricing section">
+      <section id="pricing" class="pricing section" aria-labelledby="pricing-heading">
         <div class="container">
-            <div class="section-title text-center">
-                <h2>Ölçünüzə Uyğun <span>Paketlər</span></h2>
-                <p>Kiçik başlayın, ehtiyacınız olduqca böyüyün.</p>
-            </div>
-            
-            <div class="pricing-grid">
-                <!-- Package 1 -->
-                <div class="pack-card glass-panel">
-                    <div class="pack-header">
-                        <h3>Başlanğıc</h3>
-                        <p>Sadəcə sürətli satış üçün.</p>
-                    </div>
-                    <div class="pack-features">
-                        <ul>
-                            <li><i class='bx bx-check'></i> Şəxsi e-ticarət saytı (Store)</li>
-                            <li><i class='bx bx-check'></i> Məhsullar siyahısı və idarəsi</li>
-                            <li><i class='bx bx-check'></i> Sürətli sifariş qəbulu</li>
-                            <li class="disabled"><i class='bx bx-x'></i> İşletmə İdarəetmə Sistemi</li>
-                            <li class="disabled"><i class='bx bx-x'></i> Dərin Analitika</li>
-                        </ul>
-                    </div>
-                    <a href="https://admin.ticarx.az" class="btn btn-secondary w-100">Seç</a>
-                </div>
-                
-                <!-- Package 2 -->
-                <div class="pack-card glass-panel popular">
-                    <div class="badge-popular">Ən Çox Seçilən</div>
-                    <div class="pack-header">
-                        <h3>Pro Biznes</h3>
-                        <p>Bütün idarəetmə sizin əlinizdədir.</p>
-                    </div>
-                    <div class="pack-features">
-                        <ul>
-                            <li><i class='bx bx-check'></i> <strong>Başlanğıc paketində olanlar</strong></li>
-                            <li><i class='bx bx-check'></i> Təkmilləşdirilmiş İşletmə İdarəetmə Paneli</li>
-                            <li><i class='bx bx-check'></i> Səbət və müştəri analitikası</li>
-                            <li><i class='bx bx-check'></i> Stok, borc, iadə təqibi</li>
-                            <li><i class='bx bx-check'></i> Xarici şirkət inteqrasiyaları</li>
-                        </ul>
-                    </div>
-                    <a href="https://admin.ticarx.az" class="btn btn-primary w-100">İndi Başla</a>
-                </div>
-            </div>
+          <div class="section-title text-center">
+            <h2 id="pricing-heading">Ölçünüzə uyğun <span>paketlər</span></h2>
+            <p>Kiçik başlayın, ehtiyacınız olduqca böyüyün.</p>
+          </div>
+
+          <div class="pricing-grid">
+            <article class="pack-card glass-panel">
+              <div class="pack-header">
+                <h3>Başlanğıc</h3>
+                <p>Sadəcə sürətli satış üçün.</p>
+              </div>
+              <div class="pack-features">
+                <ul>
+                  <li>
+                    <i class="bx bx-check" aria-hidden="true"></i> Şəxsi
+                    e-ticarət saytı (store)
+                  </li>
+                  <li>
+                    <i class="bx bx-check" aria-hidden="true"></i> Məhsullar
+                    siyahısı və idarəsi
+                  </li>
+                  <li>
+                    <i class="bx bx-check" aria-hidden="true"></i> Sürətli
+                    sifariş qəbulu
+                  </li>
+                  <li class="disabled">
+                    <i class="bx bx-x" aria-hidden="true"></i> İşletmə
+                    idarəetmə sistemi
+                  </li>
+                  <li class="disabled">
+                    <i class="bx bx-x" aria-hidden="true"></i> Dərin analitika
+                  </li>
+                </ul>
+              </div>
+              <a href="https://admin.ticarx.az" class="btn btn-secondary w-100"
+                >Seç</a
+              >
+            </article>
+
+            <article class="pack-card glass-panel popular">
+              <div class="badge-popular">Ən çox seçilən</div>
+              <div class="pack-header">
+                <h3>Pro biznes</h3>
+                <p>Bütün idarəetmə sizin əlinizdədir.</p>
+              </div>
+              <div class="pack-features">
+                <ul>
+                  <li>
+                    <i class="bx bx-check" aria-hidden="true"></i>
+                    <strong>Başlanğıc paketində olanlar</strong>
+                  </li>
+                  <li>
+                    <i class="bx bx-check" aria-hidden="true"></i>
+                    Təkmilləşdirilmiş işletmə idarəetmə paneli
+                  </li>
+                  <li>
+                    <i class="bx bx-check" aria-hidden="true"></i> Səbət və
+                    müştəri analitikası
+                  </li>
+                  <li>
+                    <i class="bx bx-check" aria-hidden="true"></i> Stok, borc,
+                    iadə təqibi
+                  </li>
+                  <li>
+                    <i class="bx bx-check" aria-hidden="true"></i> Xarici
+                    şirkət inteqrasiyaları
+                  </li>
+                </ul>
+              </div>
+              <a href="https://admin.ticarx.az" class="btn btn-primary w-100"
+                >Mağazanı indi aç</a
+              >
+            </article>
+          </div>
         </div>
-    </section>
+      </section>
+    </main>
 
     <footer class="footer">
-        <div class="container">
-            <div class="footer-top">
-                <div class="brand">
-                    <a href="#" class="logo" aria-label="Ticarx">
-                        <img src="assets/banner.png" alt="Ticarx logo" class="logo-image logo-image-footer">
-                    </a>
-                    <p>E-ticarətin ən yığcam, ən güclü forması.</p>
-                </div>
-                <div class="footer-links">
-                    <div class="link-group">
-                        <h5>Məhsul</h5>
-                        <a href="#features">Özəlliklər</a>
-                        <a href="#analytics">Analitika</a>
-                        <a href="#pricing">Qiymətlər</a>
-                    </div>
-                    <div class="link-group">
-                        <h5>Şirkət</h5>
-                        <a href="#">Haqqımızda</a>
-                        <a href="#">Əlaqə</a>
-                    </div>
-                </div>
+      <div class="container">
+        <div class="footer-top">
+          <div class="brand">
+            <a href="#" class="logo" aria-label="TicarX">
+              <img
+                src="assets/banner.png"
+                alt="TicarX loqosu"
+                class="logo-image logo-image-footer"
+                width="160"
+                height="40"
+              />
+            </a>
+            <p>
+              TicarX AZ — Azərbaycan üçün onlayn satış: mağaza qur, təhlükəsiz
+              ödəniş, yerli inteqrasiya.
+            </p>
+          </div>
+          <div class="footer-links">
+            <div class="link-group">
+              <h5>Məhsul</h5>
+              <a href="#features">Özəlliklər</a>
+              <a href="#analytics">Analitika</a>
+              <a href="#pricing">Qiymətlər</a>
             </div>
-            <div class="footer-bottom">
-                <p>&copy; 2026 Ticarx. Bütün hüquqlar qorunur.</p>
+            <div class="link-group">
+              <h5>Şirkət</h5>
+              <a href="#">Haqqımızda</a>
+              <a href="#">Əlaqə</a>
             </div>
+          </div>
         </div>
+        <div class="footer-bottom">
+          <p>&copy; 2026 TicarX (ticarx.az). Bütün hüquqlar qorunur.</p>
+        </div>
+      </div>
     </footer>
-
-</body>
+  </body>
 </html>
