@@ -1,0 +1,7 @@
+Solar Bold Duotone icons
+Author: 480 Design
+Source: https://www.figma.com/community/file/1166831539721848736
+Distributed via https://github.com/iconify/icon-sets/tree/master/json/solar.json
+License: Creative Commons Attribution 4.0 International (CC BY 4.0)
+https://creativecommons.org/licenses/by/4.0/
+Modification: selected original paths packaged as an SVG symbol sprite; colors inherit the interface color.

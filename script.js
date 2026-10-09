@@ -1,66 +1,95 @@
-(function () {
-  var header = document.querySelector("[data-header]");
-  var toggle = document.querySelector(".menu-toggle");
-  var nav = document.getElementById("mobile-nav");
-  var hero = document.querySelector(".hero");
+const toggle = document.querySelector(".menu-toggle");
+const mobileNav = document.querySelector("#mobile-nav");
+function closeMenu(restoreFocus = false) {
+  if (!toggle || !mobileNav) return;
+  toggle.setAttribute("aria-expanded", "false");
+  toggle.setAttribute("aria-label", "Menyunu aç");
+  mobileNav.hidden = true;
+  if (restoreFocus) toggle.focus();
+}
+toggle?.addEventListener("click", () => {
+  const open = toggle.getAttribute("aria-expanded") !== "true";
+  toggle.setAttribute("aria-expanded", String(open));
+  toggle.setAttribute("aria-label", open ? "Menyunu bağla" : "Menyunu aç");
+  mobileNav.hidden = !open;
+});
+mobileNav?.addEventListener("click", (event) => {
+  if (event.target.closest("a")) closeMenu();
+});
+document.addEventListener("keydown", (event) => {
+  if (
+    event.key === "Escape" &&
+    toggle?.getAttribute("aria-expanded") === "true"
+  )
+    closeMenu(true);
+});
+document.addEventListener("click", (event) => {
+  if (!event.target.closest(".site-header")) closeMenu();
+});
+window.matchMedia("(min-width: 701px)").addEventListener("change", (event) => {
+  if (event.matches) closeMenu();
+});
 
-  function setHeaderMode() {
-    if (!header) return;
-
-    var scrolled = window.scrollY > 12;
-    header.classList.toggle("is-scrolled", scrolled);
-
-    var pastHero = true;
-    if (hero) {
-      pastHero = window.scrollY > hero.offsetHeight - header.offsetHeight - 8;
-    }
-    header.classList.toggle("is-light", pastHero);
-  }
-
-  setHeaderMode();
-  window.addEventListener("scroll", setHeaderMode, { passive: true });
-  window.addEventListener("resize", setHeaderMode);
-
-  if (toggle && nav) {
-    toggle.addEventListener("click", function () {
-      var isOpen = toggle.getAttribute("aria-expanded") === "true";
-      toggle.setAttribute("aria-expanded", String(!isOpen));
-      toggle.setAttribute("aria-label", isOpen ? "Menyunu aç" : "Menyunu bağla");
-      nav.hidden = isOpen;
-    });
-
-    nav.querySelectorAll("a").forEach(function (link) {
-      link.addEventListener("click", function () {
-        toggle.setAttribute("aria-expanded", "false");
-        toggle.setAttribute("aria-label", "Menyunu aç");
-        nav.hidden = true;
-      });
-    });
-  }
-
-  var reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-  var nodes = document.querySelectorAll("[data-reveal]");
-
-  if (reduceMotion || !("IntersectionObserver" in window)) {
-    nodes.forEach(function (node) {
-      node.classList.add("is-visible");
-    });
-    return;
-  }
-
-  var observer = new IntersectionObserver(
-    function (entries) {
-      entries.forEach(function (entry) {
-        if (entry.isIntersecting) {
-          entry.target.classList.add("is-visible");
-          observer.unobserve(entry.target);
-        }
-      });
+// The illustrations settle once as they enter view. Text stays visible without JS.
+const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
+const illustrations = [...document.querySelectorAll("[data-illustration]")];
+let illustrationObserver;
+if (!reducedMotion.matches && "IntersectionObserver" in window) {
+  illustrationObserver = new IntersectionObserver(
+    (entries) => {
+      for (const entry of entries) {
+        if (!entry.isIntersecting) continue;
+        entry.target.classList.add("is-revealed");
+        illustrationObserver.unobserve(entry.target);
+      }
     },
-    { threshold: 0.14, rootMargin: "0px 0px -8% 0px" }
+    { threshold: 0.3 },
   );
+  illustrations.forEach((art) => illustrationObserver.observe(art));
+}
+reducedMotion.addEventListener("change", (event) => {
+  if (event.matches) {
+    illustrationObserver?.disconnect();
+    illustrations.forEach((art) => art.classList.remove("is-revealed"));
+  }
+});
 
-  nodes.forEach(function (node) {
-    observer.observe(node);
+const stage = document.getElementById("scene-stage");
+if (stage) {
+  const caption = document.getElementById("scene-caption");
+  const descriptions = {
+    all: "İdarəetmə, vitrin və kassa bir sistemdə.",
+    store: "Store aktiv olduqda kataloq və onlayn sifariş.",
+    pos: "Satış nöqtəniz üçün internetlə işləyən kassa.",
+  };
+  let scene;
+  let selected = "all";
+  document.querySelectorAll("[data-scene]").forEach((button) => {
+    button.addEventListener("click", () => {
+      selected = button.dataset.scene;
+      document
+        .querySelectorAll("[data-scene]")
+        .forEach((item) =>
+          item.setAttribute("aria-pressed", String(item === button)),
+        );
+      caption.textContent = descriptions[selected];
+      scene?.select(selected);
+    });
   });
-})();
+  // The content and CSS illustration remain usable if WebGL or loading fails.
+  const loadScene = () =>
+    import("./src/scene.js")
+      .then(({ createScene }) => {
+        scene = createScene(stage);
+        scene.select(selected);
+        const reset = document.querySelector(".scene-reset");
+        reset.hidden = false;
+        reset.addEventListener("click", () => scene.reset());
+      })
+      .catch(() => {
+        stage.dataset.renderMode = "fallback";
+      });
+  if ("requestIdleCallback" in window)
+    requestIdleCallback(loadScene, { timeout: 900 });
+  else setTimeout(loadScene, 100);
+}
