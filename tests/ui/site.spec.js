@@ -31,7 +31,7 @@ test("guest landing: WebGL, simple illustrated stories, FAQ and store creation",
   );
   await page.getByRole("button", { name: "Mağaza", exact: true }).click();
   await expect(page.locator("#scene-caption")).toContainText(
-    "Store aktiv olduqda",
+    "Hər hesabda öz kataloqunuz",
   );
   await page.getByRole("button", { name: "Kassa", exact: true }).click();
   await expect(page.locator("#scene-caption")).toContainText(
@@ -372,4 +372,24 @@ test("portfolio navigation and direct legacy URLs survive reload", async ({
       page.getByRole("heading", { name: "Gross Auto", exact: true }),
     ).toBeVisible();
   }
+});
+
+
+test("business model preview carries an explicit choice into registration", async ({ page }, info) => {
+  await page.goto('/');
+  await page.getByRole('tab', { name: 'Satış və İcarə', exact: true }).click();
+  await expect(page.locator('#model-start')).toHaveAttribute('href', 'https://admin.seller.az/auth/register?model=trade_rental');
+  await expect(page.locator('#model-preview')).toHaveAttribute('aria-labelledby', 'model-trade_rental');
+  await page.getByRole('tab', { name: 'Satış və İcarə', exact: true }).press('ArrowDown');
+  await expect(page.getByRole('tab', { name: 'Rent a car', exact: true })).toBeFocused();
+  await expect(page.locator('#model-start')).toHaveAttribute('href', /model=rental$/);
+  await page.locator('#business-models').scrollIntoViewIfNeeded();
+  await page.screenshot({ animations: 'disabled', path: info.outputPath('store-models-desktop.png') });
+  await page.setViewportSize({ width: 390, height: 844 });
+  await page.emulateMedia({ reducedMotion: 'reduce' });
+  await page.getByRole('tab', { name: 'Ticarət', exact: true }).click();
+  await expect(page.locator('#model-start')).toHaveAttribute('href', /model=trade$/);
+  expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
+  await page.screenshot({ animations: 'disabled', path: info.outputPath('store-models-mobile.png'), fullPage: true });
+  await expect(page.locator('a[href$="setup=akul"]')).toBeVisible();
 });

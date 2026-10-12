@@ -59,7 +59,7 @@ if (stage) {
   const caption = document.getElementById("scene-caption");
   const descriptions = {
     all: "İdarəetmə, vitrin və kassa bir sistemdə.",
-    store: "Store aktiv olduqda kataloq və onlayn sifariş.",
+    store: "Hər hesabda öz kataloqunuz və onlayn mağazanız.",
     pos: "Satış nöqtəniz üçün internetlə işləyən kassa.",
   };
   let scene;
@@ -93,3 +93,31 @@ if (stage) {
     requestIdleCallback(loadScene, { timeout: 900 });
   else setTimeout(loadScene, 100);
 }
+
+
+const modelContent = {
+  trade: { title: "Vitrindən kassaya, eyni mağaza.", description: "Məhsulları onlayn təqdim edin. Gələn sifarişləri, mağazadakı satışları və anbarınızı bir yerdə izləyin.", features: ["Onlayn kataloq və sifariş", "Satış proqramı və çek çapı", "Stok, alış və hesablaşmalar"], cta: "Ticarət mağazamı yarat ↗", icon: "shop" },
+  trade_rental: { title: "Həm satın, həm icarəyə verin.", description: "Gəlinlikdən avadanlığa: eyni məhsul satıla da, icarəyə verilə də bilər. İcarə imkanları hesabınızda avtomatik hazırlanır.", features: ["Satış və icarə eyni sənəddə", "Qaytarılma tarixləri və məhsul məsuliyyəti", "Avanslar, ödənişlər və icarə hesabatı"], cta: "Satış və icarə mağazamı yarat ↗", icon: "box" },
+  rental: { title: "Avtomobilləriniz üçün onlayn ünvan.", description: "Avtoparkınızı təqdim edin. Rezervasiyaları, icarə müqavilələrini və hesablaşmaları mağazanızın panelindən idarə edin.", features: ["Avtomobil kataloqu", "Rezervasiyalar və müqavilələr", "İcarə və maliyyə hesablaşmaları"], cta: "Rent a car mağazamı yarat ↗", icon: "car" },
+};
+const modelTabs = [...document.querySelectorAll("[data-store-model]")];
+function selectModel(tab) {
+  const key = tab.dataset.storeModel, item = modelContent[key];
+  modelTabs.forEach(button => { button.setAttribute("aria-selected", String(button === tab)); button.tabIndex = button === tab ? 0 : -1; });
+  document.getElementById("model-preview").setAttribute("aria-labelledby", tab.id);
+  document.getElementById("model-heading").textContent = item.title;
+  document.getElementById("model-description").textContent = item.description;
+  document.getElementById("model-symbol").setAttribute("href", `/assets/icons.svg#${item.icon}`);
+  document.getElementById("model-features").replaceChildren(...item.features.map(text => { const li = document.createElement("li"); li.textContent = text; return li; }));
+  const link = document.getElementById("model-start"); link.textContent = item.cta; link.href = `https://admin.seller.az/auth/register?model=${key}`;
+  if (!reducedMotion.matches) document.getElementById("model-preview").animate([{ opacity: .3, transform: "translateY(8px)" }, { opacity: 1, transform: "translateY(0)" }], { duration: 240, easing: "ease-out" });
+}
+modelTabs.forEach((tab, index) => {
+  tab.addEventListener("click", () => selectModel(tab));
+  tab.addEventListener("keydown", event => {
+    if (!["ArrowLeft", "ArrowRight", "ArrowUp", "ArrowDown", "Home", "End"].includes(event.key)) return;
+    event.preventDefault();
+    const next = event.key === "Home" ? 0 : event.key === "End" ? modelTabs.length - 1 : (index + (["ArrowRight", "ArrowDown"].includes(event.key) ? 1 : -1) + modelTabs.length) % modelTabs.length;
+    selectModel(modelTabs[next]); modelTabs[next].focus();
+  });
+});

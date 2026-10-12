@@ -6,7 +6,7 @@
     <title>Seller — Öz onlayn mağazanızı yaradın.</title>
     <meta
       name="description"
-      content="Seller ilə öz onlayn mağazanızı yaradın. Məhsulları, sifarişləri, anbarı və satışları bir yerdən idarə edin."
+      content="Seller ilə öz onlayn mağazanızı yaradın. Ticarət, satış və icarə, rent a car — mağazanızı açın, biznesinizi də eyni yerdən idarə edin."
     />
     <meta name="theme-color" content="#f5f7fb" />
     <meta name="color-scheme" content="light" />
@@ -22,7 +22,7 @@
     />
     <meta
       property="og:description"
-      content="Seller ilə öz onlayn mağazanızı yaradın. Məhsulları, sifarişləri, anbarı və satışları bir yerdən idarə edin."
+      content="Seller ilə öz onlayn mağazanızı yaradın. Ticarət, satış və icarə, rent a car — mağazanızı açın, biznesinizi də eyni yerdən idarə edin."
     />
     <meta property="og:url" content="https://seller.az/" />
     <meta
@@ -140,8 +140,8 @@
               Öz onlayn<br />mağazanızı<br /><span>yaradın.</span>
             </h1>
             <p class="hero-description">
-              Məhsullarınızı öz brendinizlə onlayn satışa çıxarın. Sifarişləri,
-              stoku və satışları Seller-dən idarə edin.
+              Satdığınız və icarəyə verdiyiniz məhsullar üçün öz mağazanızı açın.
+              Sifarişlər, kassa və biznesinizin gündəlik işləri də bir yerdə olsun.
             </p>
             <div class="hero-actions">
               <a class="button" href="https://admin.seller.az/auth/register"
@@ -169,8 +169,7 @@
               ></a>
             </div>
             <p class="hero-note">
-              Qeydiyyatdan başlayın, Store-u aktivləşdirin, öz vitrininizi
-              qurun.
+              İş modelinizi seçin. Mağazanız qeydiyyatla birlikdə hazırlansın.
             </p>
           </div>
           <div class="hero-visual">
@@ -518,7 +517,7 @@
                   </div>
                 </div>
                 <span class="store-preview-note"
-                  >Vitrin nümunəsi · Store aktiv olduqda</span
+                  >Öz adınızla onlayn mağaza</span
                 >
               </div>
             </article>
@@ -592,11 +591,30 @@
               <div>
                 <h3>Məhsul icarəsi</h3>
                 <p>
-                  Ticarət fəaliyyətinə məhsul icarəsini əlavə edin. Verilmə və
-                  fiziki qaytarılmanı izləyin.
+                  Qeydiyyatda Satış və İcarə seçin. Məhsul satışı, icarəyə verilmə
+                  və geri qaytarılma birlikdə hazır olsun.
                 </p>
               </div>
             </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="section store-model-section" id="business-models" aria-labelledby="model-title">
+        <div class="container store-model-layout">
+          <div><h2 id="model-title">Mağaza sizindir.<br />İş qaydası da.</h2><p>Bir başlanğıc, işinizə uyğun üç yol. Seçdiyiniz model qeydiyyatda davam edəcək.</p>
+            <div class="store-model-tabs" role="tablist" aria-orientation="vertical" aria-label="Mağaza modeli">
+              <button role="tab" id="model-trade" aria-controls="model-preview" aria-selected="true" data-store-model="trade"><svg class="icon" aria-hidden="true"><use href="/assets/icons.svg#shop"></use></svg>Ticarət</button>
+              <button role="tab" id="model-trade_rental" aria-controls="model-preview" aria-selected="false" tabindex="-1" data-store-model="trade_rental"><svg class="icon" aria-hidden="true"><use href="/assets/icons.svg#box"></use></svg>Satış və İcarə</button>
+              <button role="tab" id="model-rental" aria-controls="model-preview" aria-selected="false" tabindex="-1" data-store-model="rental"><svg class="icon" aria-hidden="true"><use href="/assets/icons.svg#car"></use></svg>Rent a car</button>
+            </div>
+          </div>
+          <div class="store-model-preview" id="model-preview" role="tabpanel" aria-labelledby="model-trade">
+            <span class="store-model-symbol"><svg aria-hidden="true"><use id="model-symbol" href="/assets/icons.svg#shop"></use></svg></span>
+            <h3 id="model-heading">Vitrindən kassaya, eyni mağaza.</h3>
+            <p id="model-description">Məhsulları onlayn təqdim edin. Gələn sifarişləri, mağazadakı satışları və anbarınızı bir yerdə izləyin.</p>
+            <ul id="model-features"><li>Onlayn kataloq və sifariş</li><li>Satış proqramı və çek çapı</li><li>Stok, alış və hesablaşmalar</li></ul>
+            <a id="model-start" class="button" href="https://admin.seller.az/auth/register?model=trade">Ticarət mağazamı yarat ↗</a>
           </div>
         </div>
       </section>
@@ -614,13 +632,13 @@
           <div class="integration-list">
             <article>
               <div>
-                <h3>Akul</h3>
+                <h3>Bein Systems</h3>
                 <p>
-                  Uyğun ticarət və Store quruluşunda məhsul, müştəri və sifariş
-                  axınları.
+                  Artıq Bein Systems işlədirsiniz? Tokenlə qoşulun, kataloqunuzu
+                  gətirin. Mağazanıza gələn sifarişlər öz sisteminizə getsin.
                 </p>
               </div>
-              <span>ERP inteqrasiyası</span>
+              <a class="text-link" href="https://admin.seller.az/auth/register?setup=akul">Bein Systems ilə başla ↗</a>
             </article>
             <article>
               <div>
@@ -662,16 +680,16 @@
               <span>01 /</span>
               <h3>Hesabınızı yaradın</h3>
               <p>
-                Onlayn satış üçün ticarət profili ilə qeydiyyatdan keçin və
-                biznesinizin məlumatlarını əlavə edin.
+                Ticarət, Satış və İcarə, yaxud Rent a car seçin. Bein Systems
+                istifadəçisisinizsə, ayrıca bağlantı yolu ilə başlayın.
               </p>
             </li>
             <li>
               <span>02 /</span>
               <h3>Mağazanızı qurun</h3>
               <p>
-                Store-u aktivləşdirin. Loqonu, rəngləri və mağazanızın ünvanını
-                seçin.
+                Onlayn mağazanız hesabla birlikdə yaranır. Loqonu, rəngləri və
+                mağazanızın ünvanını seçin.
               </p>
             </li>
             <li>
@@ -717,10 +735,9 @@
                 </svg>
               </summary>
               <p>
-                Xeyr. Seller məhsul, satış, alış, anbar və maliyyə işlərini
-                idarə edən mikro ERP platformasıdır. Onlayn mağaza ayrıca
-                aktivləşdirilən Store moduludur. Əsas idarəetmə Store olmadan da
-                işləyir.
+                Seller ilə öz onlayn mağazanızı yaradırsınız. Seçdiyiniz iş modelinə
+                uyğun satış, alış, stok, maliyyə, məhsul icarəsi və ya avtomobil
+                icarəsi işlərini də eyni hesabdan idarə edə bilərsiniz.
               </p>
             </details>
             <details>
@@ -746,10 +763,9 @@
                 </svg>
               </summary>
               <p>
-                Ticarət profili ilə qeydiyyatdan keçin, məhsullarınızı əlavə
-                edin və Ayarlar bölməsindəki Modullar səhifəsindən Store-u
-                aktivləşdirin. Sonra vitrinin adını, görünüşünü və domenini
-                qurun. Onlayn sifariş axını Store aktiv olduqda açılır.
+                İş modelinizi seçib hesab yaradın. Mağazanız avtomatik hazırlanır;
+                ayrıca Store modulu aktivləşdirmək lazım deyil. Görünüşü qurun,
+                məhsulları əlavə edin və mağazanızın keçidini paylaşın.
               </p>
             </details>
             <details>
@@ -775,9 +791,9 @@
                 </svg>
               </summary>
               <p>
-                Bəli. Avtomobil icarəsi qeydiyyatda ayrıca fəaliyyət profilidir.
-                Ticarət hesabında isə Məhsul icarəsi modulunu aktivləşdirərək
-                məhsulun verilməsini və qaytarılmasını izləyə bilərsiniz. Mövcud
+                Bəli. Avtomobillər üçün Rent a car, digər məhsulları həm satmaq,
+                həm icarəyə vermək üçün Satış və İcarə seçin. Lazım olan icarə
+                imkanları qeydiyyat zamanı avtomatik hazırlanır. Mövcud
                 məhsul icarəsi müştəri ilə əlaqə və paneldə rəsmiləşdirmə yolu
                 ilə aparılır.
               </p>
@@ -862,10 +878,10 @@
                 </svg>
               </summary>
               <p>
-                İmkanlar seçilmiş fəaliyyət profilinə və aktiv modullara görə
-                dəyişir. Akul inteqrasiyası uyğun ticarət və Store quruluşunda
-                işləyir. Seçilmiş inteqrasiya bəzi yerli əməliyyatların əvəzinə
-                xarici sistemin sənədlərini istifadə edə bilər.
+                Qeydiyyatda Bein Systems yolunu seçdikdə token, satış rejimi,
+                qiymət və sifariş yönləndirməsi addım-addım qurulur. Topdan rejimdə
+                sənədlər, pərakəndədə isə satış nöqtələrinə sifariş ötürülməsi
+                önə çıxır. Paneldə həmin işə uyğun səhifələr görünür.
               </p>
             </details>
           </div>

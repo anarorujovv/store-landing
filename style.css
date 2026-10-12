@@ -1,12 +1,12 @@
 @import "@fontsource-variable/manrope";
 
 :root {
-  --ink: #17232c;
-  --muted: #63707d;
-  --blue: #2961d7;
-  --pale: #edf3fd;
-  --paper: #f5f7fb;
-  --line: #dce2e9;
+  --ink: #171717;
+  --muted: #646464;
+  --blue: #171717;
+  --pale: #f2f2f2;
+  --paper: #f6f6f6;
+  --line: #dedede;
   --white: #fff;
   --radius: 16px;
   --font: "Manrope Variable", Arial, sans-serif;
@@ -2881,3 +2881,21 @@ input:focus-visible,
     flex-shrink: 0;
   }
 }
+
+.store-model-section { background: #171717; color: #fff; }
+.store-model-layout { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(30px, 6vw, 90px); align-items: start; }
+.store-model-layout h2+p { color: #bcbcbc; max-width: 37ch; margin: 24px 0; }
+.store-model-tabs { display: flex; flex-direction: column; align-items: stretch; gap: 4px; margin-top: 30px; }
+.store-model-tabs button { display: flex; gap: 16px; align-items: center; color: #bcbcbc; background: transparent; border-bottom: 1px solid #414141; padding: 18px 0; font-size: 18px; text-align: left; }
+.store-model-tabs button[aria-selected=true] { color: #fff; border-bottom-color: #fff; }
+.store-model-tabs button:focus-visible { outline: 2px solid #bcbcbc; outline-offset: 4px; }
+.store-model-preview { min-width: 0; background: #fff; color: #171717; padding: clamp(24px, 4vw, 48px); border-radius: 20px; }
+.store-model-symbol svg { width: 64px; height: 64px; margin-bottom: 22px; }
+.store-model-preview h3 { font-size: clamp(26px, 3vw, 36px); }
+.store-model-preview p { color: #646464; margin-top: 18px; }
+.store-model-preview ul { padding: 0; list-style: none; margin: 26px 0; }
+.store-model-preview li { border-bottom: 1px solid #e5e5e5; padding: 10px 0; }
+.store-model-preview .button { font-size: 14px; padding: 14px 20px; }
+.integration-list article { gap: 20px; }
+.integration-list .text-link { flex: 0 0 160px; line-height: 1.5; }
+@media (max-width: 700px) { .store-model-layout { grid-template-columns: 1fr; gap: 28px; } .store-model-tabs { margin-top: 18px; } .store-model-preview .button { width: 100%; white-space: normal; } .integration-list article { flex-wrap: wrap; } }
