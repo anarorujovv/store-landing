@@ -61,7 +61,7 @@ test("guest landing: WebGL, simple illustrated stories, FAQ and store creation",
   await page
     .getByText("Seller POS internetsiz işləyir?", { exact: true })
     .click();
-  await expect(page.getByText(/Hazırda POS internet bağlantısı/)).toBeVisible();
+  await expect(page.getByText(/internet bağlantısı ilə işləyir/)).toBeVisible();
   await expect(
     page.getByRole("link", { name: "Onlayn mağazanı yarat" }),
   ).toHaveAttribute("href", "https://admin.seller.az/auth/register");
@@ -378,7 +378,7 @@ test("portfolio navigation and direct legacy URLs survive reload", async ({
 test("business model preview carries an explicit choice into registration", async ({ page }, info) => {
   await page.goto('/');
   await page.getByRole('tab', { name: 'Satış və İcarə', exact: true }).click();
-  await expect(page.locator('#model-start')).toHaveAttribute('href', 'https://admin.seller.az/auth/register?model=trade_rental');
+  await expect(page.locator('#model-start')).toHaveAttribute('href', 'https://admin.seller.az/auth/register?model=trade');
   await expect(page.locator('#model-preview')).toHaveAttribute('aria-labelledby', 'model-trade_rental');
   await page.getByRole('tab', { name: 'Satış və İcarə', exact: true }).press('ArrowDown');
   await expect(page.getByRole('tab', { name: 'Rent a car', exact: true })).toBeFocused();
@@ -392,4 +392,23 @@ test("business model preview carries an explicit choice into registration", asyn
   expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
   await page.screenshot({ animations: 'disabled', path: info.outputPath('store-models-mobile.png'), fullPage: true });
   await expect(page.locator('a[href$="setup=akul"]')).toBeVisible();
+});
+
+
+test("theme library and blue actions", async ({ page }) => {
+  await page.goto('/');
+  const themes=page.locator('#themes');
+  for(const name of ['Editorial','Beauty','Electro']) await expect(themes.getByRole('heading',{name})).toBeVisible();
+  await expect(themes.getByText(/illüstrasiyalardır/)).toBeVisible();
+  await expect(themes.getByRole('link',{name:'Mağazanı yarat'})).toHaveAttribute('href','https://admin.seller.az/auth/register');
+  const primary=page.locator('.hero-actions .button');
+  await expect(primary).toHaveCSS('background-color','rgb(37, 99, 235)');
+  await expect(primary).toHaveCSS('color','rgb(255, 255, 255)');
+  await primary.hover();await expect(primary).toHaveCSS('background-color','rgb(29, 78, 216)');
+  await page.getByRole('tab',{name:'Satış və İcarə'}).click();
+  await expect(page.locator('#model-description')).toContainText('sonradan aktivləşdirin');
+  await expect(page.getByRole('tab',{name:'Satış və İcarə'})).toHaveCSS('background-color','rgb(239, 246, 255)');
+  await page.setViewportSize({width:390,height:844});
+  await expect(themes.getByRole('heading',{name:'Electro'})).toBeVisible();
+  expect(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth)).toBe(true);
 });

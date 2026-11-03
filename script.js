@@ -96,8 +96,8 @@ if (stage) {
 
 
 const modelContent = {
-  trade: { title: "Vitrindən kassaya, eyni mağaza.", description: "Məhsulları onlayn təqdim edin. Gələn sifarişləri, mağazadakı satışları və anbarınızı bir yerdə izləyin.", features: ["Onlayn kataloq və sifariş", "Satış proqramı və çek çapı", "Stok, alış və hesablaşmalar"], cta: "Ticarət mağazamı yarat ↗", icon: "shop" },
-  trade_rental: { title: "Həm satın, həm icarəyə verin.", description: "Gəlinlikdən avadanlığa: eyni məhsul satıla da, icarəyə verilə də bilər. İcarə imkanları hesabınızda avtomatik hazırlanır.", features: ["Satış və icarə eyni sənəddə", "Qaytarılma tarixləri və məhsul məsuliyyəti", "Avanslar, ödənişlər və icarə hesabatı"], cta: "Satış və icarə mağazamı yarat ↗", icon: "box" },
+  trade: { title: "Mağazanızla satışa başlayın.", description: "Məhsulları onlayn təqdim edin, gələn sifarişləri və müştəriləri sadə paneldən idarə edin.", features: ["Onlayn kataloq və sifarişlər", "Hazır temalar və vizual redaktor", "Biznes satış və POS əlavə modullar kimi"], cta: "Ticarət mağazamı yarat ↗", icon: "shop" },
+  trade_rental: { title: "Həm satın, həm icarəyə verin.", description: "Satış hesabı yaradın, Biznes satış və Məhsul icarəsi modullarını sonradan aktivləşdirin.", features: ["Məhsul satışı və icarəsi", "Qaytarılma tarixləri və məhsul məsuliyyəti", "Əlavə modul olaraq aktivləşdirmə"], cta: "Satış hesabı yarat ↗", icon: "box" },
   rental: { title: "Avtomobilləriniz üçün onlayn ünvan.", description: "Avtoparkınızı təqdim edin. Rezervasiyaları, icarə müqavilələrini və hesablaşmaları mağazanızın panelindən idarə edin.", features: ["Avtomobil kataloqu", "Rezervasiyalar və müqavilələr", "İcarə və maliyyə hesablaşmaları"], cta: "Rent a car mağazamı yarat ↗", icon: "car" },
 };
 const modelTabs = [...document.querySelectorAll("[data-store-model]")];
@@ -109,7 +109,7 @@ function selectModel(tab) {
   document.getElementById("model-description").textContent = item.description;
   document.getElementById("model-symbol").setAttribute("href", `/assets/icons.svg#${item.icon}`);
   document.getElementById("model-features").replaceChildren(...item.features.map(text => { const li = document.createElement("li"); li.textContent = text; return li; }));
-  const link = document.getElementById("model-start"); link.textContent = item.cta; link.href = `https://admin.seller.az/auth/register?model=${key}`;
+  const link = document.getElementById("model-start"); link.textContent = item.cta; link.href = `https://admin.seller.az/auth/register?model=${key === "trade_rental" ? "trade" : key}`;
   if (!reducedMotion.matches) document.getElementById("model-preview").animate([{ opacity: .3, transform: "translateY(8px)" }, { opacity: 1, transform: "translateY(0)" }], { duration: 240, easing: "ease-out" });
 }
 modelTabs.forEach((tab, index) => {
