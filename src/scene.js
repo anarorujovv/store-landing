@@ -173,7 +173,7 @@ export function createScene(stage) {
     );
   });
 
-  // A single platform physically connects management, storefront, and POS.
+  // A single platform physically connects management, storefront, and orders.
   box(world, 6.25, 0.25, 4.5, 0, 0.07, 0, "edge", 0.2);
   box(world, 6.3, 0.19, 4.54, 0, 0.26, 0, "plate", 0.2);
   const ground = new THREE.Mesh(
@@ -261,18 +261,18 @@ export function createScene(stage) {
   panel(store, 1.08, 0.27, 0, 1.18, 0.622, signMap);
   box(store, 1.68, 0.1, 0.47, 0, 0.055, 0.68, "edge", 0.04);
 
-  const pos = new THREE.Group();
-  world.add(pos);
-  pos.position.set(1.8, 0.4, 0.95);
-  pos.rotation.y = -0.18;
-  box(pos, 1.03, 0.13, 0.72, 0, 0.04, 0, "navy", 0.06);
-  box(pos, 0.31, 0.68, 0.27, 0, 0.39, -0.1, "silver", 0.04).rotation.x = -0.15;
+  const orders = new THREE.Group();
+  world.add(orders);
+  orders.position.set(1.8, 0.4, 0.95);
+  orders.rotation.y = -0.18;
+  box(orders, 1.03, 0.13, 0.72, 0, 0.04, 0, "navy", 0.06);
+  box(orders, 0.31, 0.68, 0.27, 0, 0.39, -0.1, "silver", 0.04).rotation.x = -0.15;
   const terminal = new THREE.Group();
-  pos.add(terminal);
+  orders.add(terminal);
   terminal.position.set(0, 0.95, 0);
   terminal.rotation.x = -0.2;
   box(terminal, 1.41, 1.12, 0.15, 0, 0, 0, "navy", 0.09);
-  const posMap = texture(480, 355, (ctx) => {
+  const ordersMap = texture(480, 355, (ctx) => {
     ctx.fillStyle = "#f8fafc";
     ctx.fillRect(0, 0, 480, 355);
     ctx.fillStyle = "#284362";
@@ -280,8 +280,8 @@ export function createScene(stage) {
     ctx.fillText("seller", 25, 48);
     ctx.fillStyle = "#788fae";
     ctx.font = "18px Arial";
-    ctx.fillText("POS", 394, 48);
-    ["Məhsul seçin", "Səbət", "Ödəniş"].forEach((s, i) => {
+    ctx.fillText("Sifariş", 394, 48);
+    ["Yeni sifariş", "Hazırlanır", "Çatdırıldı"].forEach((s, i) => {
       rect(ctx, 25, 79 + i * 65, 430, 49, i === 2 ? "#dce8fa" : "#eaf0f7");
       ctx.fillStyle = "#597392";
       ctx.font = "20px Arial";
@@ -290,11 +290,11 @@ export function createScene(stage) {
     rect(ctx, 25, 286, 430, 46, "#426bb4");
     ctx.fillStyle = "#fff";
     ctx.font = "18px Arial";
-    ctx.fillText("Kassa əməliyyatları", 45, 316);
+    ctx.fillText("Sifarişləri idarə et", 45, 316);
   });
-  panel(terminal, 1.25, 0.93, 0, 0.02, 0.081, posMap);
-  box(pos, 0.75, 0.48, 0.81, 0.8, 0.26, 0.31, "white", 0.06);
-  box(pos, 0.61, 0.05, 0.055, 0.8, 0.44, 0.733, "navy", 0.01);
+  panel(terminal, 1.25, 0.93, 0, 0.02, 0.081, ordersMap);
+  box(orders, 0.75, 0.48, 0.81, 0.8, 0.26, 0.31, "white", 0.06);
+  box(orders, 0.61, 0.05, 0.055, 0.8, 0.44, 0.733, "navy", 0.01);
   const receiptMap = texture(160, 260, (ctx) => {
     ctx.fillStyle = "#fff";
     ctx.fillRect(0, 0, 160, 260);
@@ -305,7 +305,7 @@ export function createScene(stage) {
     for (let i = 0; i < 6; i++)
       rect(ctx, 22, 69 + i * 23, i === 5 ? 70 : 116, 5, "#c2cede", 1);
   });
-  const receipt = panel(pos, 0.49, 0.69, 0.8, 0.14, 0.769, receiptMap);
+  const receipt = panel(orders, 0.49, 0.69, 0.8, 0.14, 0.769, receiptMap);
   receipt.rotation.x = -0.1;
 
   const parcels = new THREE.Group();
@@ -384,7 +384,7 @@ export function createScene(stage) {
   const motion = window.matchMedia("(prefers-reduced-motion: reduce)");
   const finePointer = window.matchMedia("(hover: hover) and (pointer: fine)");
   const target = { yaw, pitch };
-  const homes = { store: store.position.y, pos: pos.position.y };
+  const homes = { store: store.position.y, orders: orders.position.y };
   function draw() {
     frame = 0;
     if (disposed || !visible || document.hidden) return;
@@ -397,7 +397,7 @@ export function createScene(stage) {
     world.rotation.x = pitch;
     for (const [name, group] of [
       ["store", store],
-      ["pos", pos],
+      ["orders", orders],
     ]) {
       const destination = homes[name] + (selected === name ? 0.22 : 0);
       group.position.y = snap
@@ -411,7 +411,7 @@ export function createScene(stage) {
       Math.abs(
         store.position.y - homes.store - (selected === "store" ? 0.22 : 0),
       ) +
-      Math.abs(pos.position.y - homes.pos - (selected === "pos" ? 0.22 : 0));
+      Math.abs(orders.position.y - homes.orders - (selected === "orders" ? 0.22 : 0));
     if (!snap && settling > 0.0006) frame = requestAnimationFrame(draw);
   }
   function requestDraw() {

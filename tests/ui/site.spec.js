@@ -3,20 +3,20 @@ import { test, expect } from "@playwright/test";
 const fixture = [
   {
     title: "Nümunə mağaza",
-    category: "Ticarət",
+    category: "Mağaza",
     summary: "Yalnız avtomatik test üçün.",
-    services: ["Store", "POS"],
+    services: ["Store", "Tema"],
     year: 2026,
     url: "https://example.com",
     cover: "/portfolio/missing-test-image.webp",
   },
   {
-    title: "İcarə nümunəsi",
-    category: "İcarə",
+    title: "Xidmət nümunəsi",
+    category: "Xidmət",
     summary: "Yalnız avtomatik test üçün.",
     url: "javascript:alert(1)",
   },
-  { title: "Gizli qaralama", category: "Ticarət", published: false },
+  { title: "Gizli qaralama", category: "Mağaza", published: false },
 ];
 
 test("guest landing: WebGL, simple illustrated stories, FAQ and store creation", async ({
@@ -33,9 +33,9 @@ test("guest landing: WebGL, simple illustrated stories, FAQ and store creation",
   await expect(page.locator("#scene-caption")).toContainText(
     "Hər hesabda öz kataloqunuz",
   );
-  await page.getByRole("button", { name: "Kassa", exact: true }).click();
+  await page.getByRole("button", { name: "Sifarişlər", exact: true }).click();
   await expect(page.locator("#scene-caption")).toContainText(
-    "internetlə işləyən",
+    "sifarişlər",
   );
   await expect(page.getByRole("heading", { level: 1 })).toHaveText(
     "Öz onlaynmağazanızıyaradın.",
@@ -49,7 +49,7 @@ test("guest landing: WebGL, simple illustrated stories, FAQ and store creation",
     page.getByRole("heading", { name: "Stok göz önündə." }),
   ).toBeVisible();
   await expect(
-    page.getByRole("heading", { name: "Hesablar aydındır." }),
+    page.getByRole("heading", { name: "Qiymət müştəriyə görə." }),
   ).toBeVisible();
   await expect(
     page.locator("#platform table, #platform [role=tab]"),
@@ -59,9 +59,9 @@ test("guest landing: WebGL, simple illustrated stories, FAQ and store creation",
     page.getByRole("link", { name: "Mağazanı yarat", exact: true }).first(),
   ).toHaveAttribute("href", "https://admin.seller.az/auth/register");
   await page
-    .getByText("Seller POS internetsiz işləyir?", { exact: true })
+    .getByText("Müştərilərə fərqli qiymət göstərə bilərəm?", { exact: true })
     .click();
-  await expect(page.getByText(/internet bağlantısı ilə işləyir/)).toBeVisible();
+  await expect(page.getByText(/Müştəri hesabına daxil olduqda/)).toBeVisible();
   await expect(
     page.getByRole("link", { name: "Onlayn mağazanı yarat" }),
   ).toHaveAttribute("href", "https://admin.seller.az/auth/register");
@@ -109,9 +109,9 @@ test("portfolio filters, Azerbaijani search, missing image and safe links", asyn
     path: testInfo.outputPath("portfolio-populated.png"),
     fullPage: true,
   });
-  await page.getByRole("button", { name: "İcarə", exact: true }).click();
+  await page.getByRole("button", { name: "Xidmət", exact: true }).click();
   await expect(page.locator(".project-card")).toHaveCount(1);
-  await page.getByRole("searchbox").fill("icarə");
+  await page.getByRole("searchbox").fill("xidmət");
   await expect(page.locator(".project-card")).toHaveCount(1);
   await page.getByRole("searchbox").fill("tapılmayan");
   await expect(
@@ -227,9 +227,9 @@ test("WebGL failure preserves the page and semantic scene selectors", async ({
     "fallback",
   );
   await expect(page.locator(".scene-fallback")).toBeVisible();
-  await page.getByRole("button", { name: "Kassa", exact: true }).click();
+  await page.getByRole("button", { name: "Sifarişlər", exact: true }).click();
   await expect(page.locator("#scene-caption")).toContainText(
-    "internetlə işləyən",
+    "sifarişlər",
   );
   await expect(
     page.getByRole("link", { name: "Mağazanı yarat" }).first(),
@@ -254,9 +254,9 @@ test("reduced motion keeps a complete still scene without a perpetual render loo
     "data-render-mode",
     "webgl",
   );
-  await page.getByRole("button", { name: "Kassa", exact: true }).click();
+  await page.getByRole("button", { name: "Sifarişlər", exact: true }).click();
   await expect(page.locator("#scene-caption")).toContainText(
-    "internetlə işləyən",
+    "sifarişlər",
   );
   const first = await page.evaluate(() => window.__frameCount);
   await page.waitForTimeout(350);
@@ -375,24 +375,6 @@ test("portfolio navigation and direct legacy URLs survive reload", async ({
 });
 
 
-test("business model preview carries an explicit choice into registration", async ({ page }, info) => {
-  await page.goto('/');
-  await page.getByRole('tab', { name: 'Satış və İcarə', exact: true }).click();
-  await expect(page.locator('#model-start')).toHaveAttribute('href', 'https://admin.seller.az/auth/register?model=trade');
-  await expect(page.locator('#model-preview')).toHaveAttribute('aria-labelledby', 'model-trade_rental');
-  await page.getByRole('tab', { name: 'Satış və İcarə', exact: true }).press('ArrowDown');
-  await expect(page.getByRole('tab', { name: 'Rent a car', exact: true })).toBeFocused();
-  await expect(page.locator('#model-start')).toHaveAttribute('href', /model=rental$/);
-  await page.locator('#business-models').scrollIntoViewIfNeeded();
-  await page.screenshot({ animations: 'disabled', path: info.outputPath('store-models-desktop.png') });
-  await page.setViewportSize({ width: 390, height: 844 });
-  await page.emulateMedia({ reducedMotion: 'reduce' });
-  await page.getByRole('tab', { name: 'Ticarət', exact: true }).click();
-  await expect(page.locator('#model-start')).toHaveAttribute('href', /model=trade$/);
-  expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
-  await page.screenshot({ animations: 'disabled', path: info.outputPath('store-models-mobile.png'), fullPage: true });
-  await expect(page.locator('a[href$="setup=akul"]')).toBeVisible();
-});
 
 
 test("theme library and blue actions", async ({ page }) => {
@@ -405,9 +387,6 @@ test("theme library and blue actions", async ({ page }) => {
   await expect(primary).toHaveCSS('background-color','rgb(37, 99, 235)');
   await expect(primary).toHaveCSS('color','rgb(255, 255, 255)');
   await primary.hover();await expect(primary).toHaveCSS('background-color','rgb(29, 78, 216)');
-  await page.getByRole('tab',{name:'Satış və İcarə'}).click();
-  await expect(page.locator('#model-description')).toContainText('sonradan aktivləşdirin');
-  await expect(page.getByRole('tab',{name:'Satış və İcarə'})).toHaveCSS('background-color','rgb(239, 246, 255)');
   await page.setViewportSize({width:390,height:844});
   await expect(themes.getByRole('heading',{name:'Electro'})).toBeVisible();
   expect(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth)).toBe(true);

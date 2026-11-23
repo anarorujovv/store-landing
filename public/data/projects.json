@@ -6,30 +6,25 @@
     "cover": "/portfolio/grossauto-logo.webp",
     "coverAlt": "Gross Auto loqosu",
     "coverStyle": "logo-dark",
-    "services": ["Store modulu", "Akul inteqrasiyası"],
+    "services": [
+      "Store modulu",
+      "Akul inteqrasiyası"
+    ],
     "url": "https://grossauto.az/",
     "published": true
   },
   {
     "title": "Goncha Gallery",
     "category": "Gəlinlik mağazası",
-    "summary": "Gəlinliklərin satışı və icarəsi ilə məşğul olan mağaza. Satış, məhsul icarəsi və kassa əməliyyatları üçün Seller-dən istifadə edir.",
+    "summary": "Gəlinliklərin satışı və icarəsi ilə məşğul olan mağaza. Satış və məhsul icarəsi üçün Seller-dən istifadə edir.",
     "cover": "/portfolio/goncha-gallery-logo.jpg",
     "coverAlt": "Goncha Gallery loqosu",
     "coverStyle": "logo-light",
-    "services": ["Satış", "Məhsul icarəsi", "POS kassa"],
+    "services": [
+      "Satış",
+      "Məhsul icarəsi"
+    ],
     "url": "https://www.instagram.com/gonchagallery/",
-    "published": true
-  },
-  {
-    "title": "Kral Rent A Car",
-    "category": "Avtomobil icarəsi",
-    "summary": "Avtomobil icarəsi şirkəti. Seller-in rent-a-car fəaliyyət profili ilə icarə işlərini bir yerdən idarə edir.",
-    "cover": "/portfolio/kral-rent-a-car-logo.jpg",
-    "coverAlt": "Kral Rent A Car loqosu",
-    "coverStyle": "logo-light",
-    "services": ["Rent-a-car profili", "İcarə idarəetməsi"],
-    "url": "https://www.instagram.com/kralrentacar/",
     "published": true
   }
 ]

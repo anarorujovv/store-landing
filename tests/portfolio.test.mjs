@@ -9,17 +9,17 @@ import {
 const projects = normalizeProjects([
   {
     title: "İpək mağazası",
-    category: "Ticarət",
+    category: "Mağaza",
     summary: "Geyim və aksessuar",
-    services: ["Store", "POS"],
+    services: ["Store", "Tema"],
     year: 2026,
   },
   {
-    title: "Şəhər avtomobilləri",
-    category: "İcarə",
-    summary: "Avtomobil icarəsi",
+    title: "Şəhər xidməti",
+    category: "Xidmət",
+    summary: "Xidmət nümunəsi",
   },
-  { title: "Yayımlanmayan layihə", category: "Ticarət", published: false },
+  { title: "Yayımlanmayan layihə", category: "Mağaza", published: false },
 ]);
 test("unpublished projects never appear in the public portfolio", () => {
   assert.equal(projects.length, 2);
@@ -27,8 +27,8 @@ test("unpublished projects never appear in the public portfolio", () => {
 });
 test("Azerbaijani search matches case-insensitively across title and services", () => {
   assert.equal(filterProjects(projects, "", "ipək")[0].title, "İpək mağazası");
-  assert.equal(filterProjects(projects, "", " POS ").length, 1);
-  assert.equal(filterProjects(projects, "İcarə", "POS").length, 0);
+  assert.equal(filterProjects(projects, "", " Tema ").length, 1);
+  assert.equal(filterProjects(projects, "Xidmət", "Tema").length, 0);
 });
 test("empty and no-results states remain distinct", () => {
   assert.deepEqual(normalizeProjects([]), []);
@@ -38,7 +38,7 @@ test("empty and no-results states remain distinct", () => {
 test("malformed editorial records reject to a recoverable error state", () => {
   assert.throws(() => normalizeProjects({ projects: [] }));
   assert.throws(() => normalizeProjects([{ title: "Test" }]));
-  assert.throws(() => normalizeProjects([{ title: " ", category: "Ticarət" }]));
+  assert.throws(() => normalizeProjects([{ title: " ", category: "Mağaza" }]));
 });
 test("unsafe links and credential-bearing URLs never become clickable", () => {
   for (const url of [

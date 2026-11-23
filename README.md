@@ -39,7 +39,7 @@ macOS testləri quraşdırılmış Google Chrome-dan istifadə edir. Başqa sist
     "year": 2026,
     "cover": "/portfolio/layihe.webp",
     "coverAlt": "Layihənin ana səhifəsinin görünüşü",
-    "services": ["Store", "Kataloq", "POS"],
+    "services": ["Store", "Kataloq", "Tema"],
     "url": "https://layihenin-real-unvani.az",
     "published": true
   }
@@ -58,9 +58,8 @@ kartın ölçüsünə uyğun doldurur.
 fayllardır**; orada məxfi qaralama və müştəri məlumatı saxlamayın. Bu, CMS və ya
 admin yükləmə paneli deyil: layihələr fayldan idarə edilir.
 
-Hazırda portfolio-da Gross Auto (Store və Akul inteqrasiyası), Goncha Gallery
-(gəlinlik satışı, məhsul icarəsi və POS kassa) və Kral Rent A Car (avtomobil
-icarəsi fəaliyyət profili) var. Loqolar bizneslərin rəsmi saytından və Instagram
+Hazırda portfolio-da Gross Auto (Store və Akul inteqrasiyası) və Goncha Gallery
+(gəlinlik satışı və məhsul icarəsi) var. Loqolar bizneslərin rəsmi saytından və Instagram
 profilindən götürülüb; mənbələr `docs/portfolio-assets.md` faylındadır. Testdəki
 nümunələr yalnız fixture-dir.
 

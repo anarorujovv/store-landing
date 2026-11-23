@@ -58,9 +58,9 @@ const stage = document.getElementById("scene-stage");
 if (stage) {
   const caption = document.getElementById("scene-caption");
   const descriptions = {
-    all: "İdarəetmə, vitrin və kassa bir sistemdə.",
+    all: "İdarəetmə, vitrin və sifarişlər bir sistemdə.",
     store: "Hər hesabda öz kataloqunuz və onlayn mağazanız.",
-    pos: "Satış nöqtəniz üçün internetlə işləyən kassa.",
+    orders: "Gələn sifarişlər bir paneldən idarə olunur.",
   };
   let scene;
   let selected = "all";
@@ -93,31 +93,3 @@ if (stage) {
     requestIdleCallback(loadScene, { timeout: 900 });
   else setTimeout(loadScene, 100);
 }
-
-
-const modelContent = {
-  trade: { title: "Mağazanızla satışa başlayın.", description: "Məhsulları onlayn təqdim edin, gələn sifarişləri və müştəriləri sadə paneldən idarə edin.", features: ["Onlayn kataloq və sifarişlər", "Hazır temalar və vizual redaktor", "Biznes satış və POS əlavə modullar kimi"], cta: "Ticarət mağazamı yarat ↗", icon: "shop" },
-  trade_rental: { title: "Həm satın, həm icarəyə verin.", description: "Satış hesabı yaradın, Biznes satış və Məhsul icarəsi modullarını sonradan aktivləşdirin.", features: ["Məhsul satışı və icarəsi", "Qaytarılma tarixləri və məhsul məsuliyyəti", "Əlavə modul olaraq aktivləşdirmə"], cta: "Satış hesabı yarat ↗", icon: "box" },
-  rental: { title: "Avtomobilləriniz üçün onlayn ünvan.", description: "Avtoparkınızı təqdim edin. Rezervasiyaları, icarə müqavilələrini və hesablaşmaları mağazanızın panelindən idarə edin.", features: ["Avtomobil kataloqu", "Rezervasiyalar və müqavilələr", "İcarə və maliyyə hesablaşmaları"], cta: "Rent a car mağazamı yarat ↗", icon: "car" },
-};
-const modelTabs = [...document.querySelectorAll("[data-store-model]")];
-function selectModel(tab) {
-  const key = tab.dataset.storeModel, item = modelContent[key];
-  modelTabs.forEach(button => { button.setAttribute("aria-selected", String(button === tab)); button.tabIndex = button === tab ? 0 : -1; });
-  document.getElementById("model-preview").setAttribute("aria-labelledby", tab.id);
-  document.getElementById("model-heading").textContent = item.title;
-  document.getElementById("model-description").textContent = item.description;
-  document.getElementById("model-symbol").setAttribute("href", `/assets/icons.svg#${item.icon}`);
-  document.getElementById("model-features").replaceChildren(...item.features.map(text => { const li = document.createElement("li"); li.textContent = text; return li; }));
-  const link = document.getElementById("model-start"); link.textContent = item.cta; link.href = `https://admin.seller.az/auth/register?model=${key === "trade_rental" ? "trade" : key}`;
-  if (!reducedMotion.matches) document.getElementById("model-preview").animate([{ opacity: .3, transform: "translateY(8px)" }, { opacity: 1, transform: "translateY(0)" }], { duration: 240, easing: "ease-out" });
-}
-modelTabs.forEach((tab, index) => {
-  tab.addEventListener("click", () => selectModel(tab));
-  tab.addEventListener("keydown", event => {
-    if (!["ArrowLeft", "ArrowRight", "ArrowUp", "ArrowDown", "Home", "End"].includes(event.key)) return;
-    event.preventDefault();
-    const next = event.key === "Home" ? 0 : event.key === "End" ? modelTabs.length - 1 : (index + (["ArrowRight", "ArrowDown"].includes(event.key) ? 1 : -1) + modelTabs.length) % modelTabs.length;
-    selectModel(modelTabs[next]); modelTabs[next].focus();
-  });
-});
